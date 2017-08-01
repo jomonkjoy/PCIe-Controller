@@ -17,7 +17,7 @@ module pcie_ltssm_sm (
     DISABLE,
     LOOPBACK,
     HOTRESET
-  } state _type;
+  } state_type;
   state_type state = DETECT;
   
   always_ff @(posedge clk) begin
