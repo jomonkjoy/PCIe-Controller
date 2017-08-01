@@ -17,7 +17,7 @@ module pcie_piso #(
       data <= {data_in[DATA_WIDTH-2:0],1'b0};
     end else if (load) begin
       data <= data_in;
-    end else begin
+    end else if (enable) begin
       data <= {data[DATA_WIDTH-2:0],1'b0};
     end
   end
