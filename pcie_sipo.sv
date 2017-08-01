@@ -47,15 +47,18 @@ module pcie_sipo #(
   end
   
   always_ff @(posedge clk) begin
-    if (state == IDLE) begin
+    if (state == ALLIGN && count >= DATA_WIDTH-1) begin
       count <= {COUNT_WIDTH{1'b0}};
-      data_out_valid <= 1'b0;
-    end else if (state == ALLIGN && count >= DATA_WIDTH-1) begin
-      count <= {COUNT_WIDTH{1'b0}};
-      data_out_valid <= 1'b1;
     end else if (state == ALLIGN) begin
       count <= count + 1;
-      data_out_valid <= 1'b0;
+    end else begin
+      count <= {COUNT_WIDTH{1'b0}};
+    end
+  end
+  
+  always_ff @(posedge clk) begin
+    if (state == ALLIGN && count >= DATA_WIDTH-1) begin
+      data_out_valid <= 1'b1;
     end else begin
       data_out_valid <= 1'b0;
     end
