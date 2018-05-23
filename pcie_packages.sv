@@ -35,6 +35,29 @@ package packages;
     tlp_prefix = 3'b100
   }tlp_fmt_type;
   
+  typedef struct {
+    tlp_fmt_type Fmt;
+    logic [4:0]  Type;
+    logic        RES2;
+    logic        TC;
+    logic        RES1;
+    logic        Attr1;
+    logic        RES0;
+    logic        TH;
+    logic        TD;
+    logic        EP;
+    logic [1:0]  Attr0;
+    logic [1:0]  AT;
+    logic [9:0]  Length; // MAX(tlp paylod size) = 1024
+  }tlp_dw0_struct;
+  
+  typedef struct {
+    logic [15:0] RequesterID;
+    logic [7:0]  Tag;
+    logic [3:0]  LastDWBE;
+    logic [3:0]  FirstDWBE;
+  }tlp_dw1_struct;
+  
   parameter COM = K28p5; // Comma char ised for lane&link initialization and management
   parameter STP = K27p7; // Marker for start of a Transaction layer packet
   parameter SDP = K28p2; // Marker for start of a Data link layer packet
